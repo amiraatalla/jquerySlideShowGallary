@@ -1,0 +1,26 @@
+body{
+    position: relative;
+}
+
+#flw {
+    width: 800px;
+    height: 800px;
+    margin: 20px 0 0 350px;
+    z-index: 0;
+    /* background-color: rgb(231, 248, 248); */
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    padding: 20px;
+}
+
+.colors {
+    /* background-color: rgba(179, 19, 179, 0.2); */
+    background-color: rgb(179, 19, 179);
+}
+
+
+/* .fadein { position:relative; height:332px; width:500px; }
+.fadein img { position:absolute; left:0; top:0; } */
