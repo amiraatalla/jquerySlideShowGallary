@@ -1,7 +1,15 @@
 $(document).ready(function () {
 
     let newImage, exitImage, lessImage, greaterImage, divImage;
-    $("img").click(function () {
+    var sources = [];
+
+    // get sources for all pictures
+$("#flw img").each(function(){
+    sources.push(this.src);});
+
+
+    let currentImage = 0;
+        $("#flw img").click(function () {
 
         divImage = $('<div></div>');
         $(divImage).attr('id', 'div2');
@@ -16,7 +24,12 @@ $(document).ready(function () {
             'top': '0',
             'left': '0',
             'text-align': 'center',
+            'background':'#B313B3'
         })
+
+        // get index for current image
+        currentImage = sources.indexOf(this.src);
+
 
         //create less than with this.src
 
@@ -26,6 +39,7 @@ $(document).ready(function () {
             alt: 'Alt text'
         });
 
+        
         $(divImage).append(lessImage);
 
         $(lessImage).css({
@@ -45,6 +59,7 @@ $(document).ready(function () {
             alt: 'Alt text'
         });
 
+    
         $(divImage).append(newImage);
 
         $(newImage).css({
@@ -89,39 +104,55 @@ $(document).ready(function () {
 
         })
 
+                //start exit function
 
-        //start exit function
+                $(exitImage).click(function () {
 
-        $(exitImage).click(function () {
-
-            $(divImage).remove();
-
-        })
-
-        //greater than function
-        $(greaterImage).click(function () {
-
-
-            $(divImage).fadeOut(3000);
-            $(divImage).fadeIn(3000).append($('#flw :child')).next().css({
-                'width': "700px",
-                'height': "650px",
-            })
-        })
-
-        //less than function
-        $(lessImage).click(function () {
-            
-        $(divImage).fadeOut(3000);
-        $(divImage).fadeIn(3000).append($('#flw child')).prev().css({
-            'width': "700px",
-            'height': "650px",
-        })
-
+                    $(divImage).remove();
         
+                })
+        
+                //greater than function
+                $(greaterImage).click(function () {
 
-    })
+                    // repeat the images
+                    if(currentImage==3){
+                        currentImage=-1;
+                    }
+                    $(divImage).fadeOut(1000, function(){
+
+                        //change the image source to the next image source from array
+                        $("#imgId").attr("src",sources[++currentImage]);
+                    });
+                     $(divImage).fadeIn(1000);
+                   
+                })
+        
+                //less than function
+                $(lessImage).click(function () {
+                    
+                    // repeat the images
+                    if(currentImage==0){
+                        currentImage=4;
+                    }
+                    $(divImage).fadeOut(1000, function(){
+
+                        //change the image source to the previous image source from array
+                        $("#imgId").attr("src",sources[--currentImage]);
+                    });
+                     $(divImage).fadeIn(1000);
+                   
+        
+                
+        
+            })
+
 
     
 })
+
+
+
+
+
 });
